@@ -160,7 +160,8 @@
                 if (gasValue > 480) {
                     showNotification(
                         "🚨 Gas Alert: High gas level detected (" + gasValue + " ppm)!",
-                        23000
+                      60000
+
                     );
                 }
             } catch (error) {
@@ -178,7 +179,8 @@
                 if (ultrasonicValue >= 5 && ultrasonicValue <= 10) {
                     showNotification(
                         "⚠️ Alert: Object detected at a critical distance of " + ultrasonicValue + " cm!",
-                        3000
+                      60000
+
                     );
                 }
             } catch (error) {
