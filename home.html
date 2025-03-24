@@ -173,20 +173,20 @@
                         3000,
                         () => {
                             // After 5 seconds, check for gas alert
-                            if (sensorData.gas > 400) {
+                            if (sensorData.gas > 450) {
                                 showNotification(
                                     "🚨 Gas Alert: High gas level detected (" + sensorData.gas + " ppm)!",
-                                    12000
+                                    19000
                                 );
                             }
                         }
                     );
                 }
                 // If no ultrasonic alert, directly check for gas alert after 5 seconds
-                else if (sensorData.gas > 400) {
+                else if (sensorData.gas > 450) {
                     showNotification(
                         "🚨 Gas Alert: High gas level detected (" + sensorData.gas + " ppm)!",
-                        12000
+                        19000
                     );
                 }
             } catch (error) {
