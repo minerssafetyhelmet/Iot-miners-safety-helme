@@ -150,18 +150,16 @@
             }, duration);
         }
 
-        // Fetch and Update Sensor Data
+        // Fetch and Update Sensor Data except gas value
         async function fetchSensorData() {
             try {
                 const sensorData = {
-                    gas: generateRandomValue(200, 500),
                     dhtTemp: generateRandomValue(32, 35),
                     dhtHumidity: generateRandomValue(35, 40),
                     ultrasonic: generateRandomValue(5, 20)
                 };
 
-                // Update sensor values in the UI
-                document.getElementById("gas").innerText = sensorData.gas;
+                // Update only non-gas values in the UI every 9 seconds
                 document.getElementById("dhtTemp").innerText = sensorData.dhtTemp;
                 document.getElementById("dhtHumidity").innerText = sensorData.dhtHumidity;
                 document.getElementById("ultrasonic").innerText = sensorData.ultrasonic;
@@ -173,19 +171,17 @@
                         3000,
                         () => {
                             // After 5 seconds, check for gas alert
-                            if (sensorData.gas > 450) {
+                            if (parseInt(document.getElementById("gas").innerText) > 450) {
                                 showNotification(
-                                    "🚨 Gas Alert: High gas level detected (" + sensorData.gas + " ppm)!",
+                                    "🚨 Gas Alert: High gas level detected (" + document.getElementById("gas").innerText + " ppm)!",
                                     19000
                                 );
                             }
                         }
                     );
-                }
-                // If no ultrasonic alert, directly check for gas alert after 5 seconds
-                else if (sensorData.gas > 450) {
+                } else if (parseInt(document.getElementById("gas").innerText) > 450) {
                     showNotification(
-                        "🚨 Gas Alert: High gas level detected (" + sensorData.gas + " ppm)!",
+                        "🚨 Gas Alert: High gas level detected (" + document.getElementById("gas").innerText + " ppm)!",
                         19000
                     );
                 }
@@ -194,9 +190,25 @@
             }
         }
 
-        // Initial data fetch and periodic update every 9 seconds
+        // Fetch Gas Value Separately Every 1 Minute
+        async function fetchGasData() {
+            try {
+                const gasValue = generateRandomValue(200, 500);
+                document.getElementById("gas").innerText = gasValue;
+            } catch (error) {
+                console.error("Error fetching gas data:", error);
+            }
+        }
+
+        // Initial data fetch
         fetchSensorData();
+        fetchGasData();
+
+        // Update all sensor values every 9 seconds
         setInterval(fetchSensorData, 9000);
+
+        // Update gas value every 1 minute
+        setInterval(fetchGasData, 60000);
     </script>
 </body>
 
