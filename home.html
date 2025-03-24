@@ -174,7 +174,7 @@
                             if (parseInt(document.getElementById("gas").innerText) > 480) {
                                 showNotification(
                                     "🚨 Gas Alert: High gas level detected (" + document.getElementById("gas").innerText + " ppm)!",
-                                    19000
+                                    23000
                                 );
                             }
                         }
@@ -182,7 +182,7 @@
                 } else if (parseInt(document.getElementById("gas").innerText) > 480) {
                     showNotification(
                         "🚨 Gas Alert: High gas level detected (" + document.getElementById("gas").innerText + " ppm)!",
-                        19000
+                        23000
                     );
                 }
             } catch (error) {
