@@ -171,7 +171,7 @@
                         3000,
                         () => {
                             // After 5 seconds, check for gas alert
-                            if (parseInt(document.getElementById("gas").innerText) > 450) {
+                            if (parseInt(document.getElementById("gas").innerText) > 400) {
                                 showNotification(
                                     "🚨 Gas Alert: High gas level detected (" + document.getElementById("gas").innerText + " ppm)!",
                                     19000
@@ -179,7 +179,7 @@
                             }
                         }
                     );
-                } else if (parseInt(document.getElementById("gas").innerText) > 450) {
+                } else if (parseInt(document.getElementById("gas").innerText) > 400) {
                     showNotification(
                         "🚨 Gas Alert: High gas level detected (" + document.getElementById("gas").innerText + " ppm)!",
                         19000
